@@ -15,11 +15,11 @@ public class Program
         builder.Services.AddControllers();
         builder.Services.AddDbContext<MovieReservationDbContext>(
             opt => opt.UseSqlServer($@"
-                Server={Environment.GetEnvironmentVariable("DB_HOST")}
+                Server={Environment.GetEnvironmentVariable("DB_HOST")};
                 Database={Environment.GetEnvironmentVariable("DB")};
                 User Id={Environment.GetEnvironmentVariable("DB_USER_ID")};
                 Password={Environment.GetEnvironmentVariable("DB_PASSWORD")};
-                TrustServerCertifcate=True;
+                TrustServerCertificate=True;
             ")
         );
 
