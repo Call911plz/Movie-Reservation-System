@@ -5,6 +5,15 @@ public class Program
 {
     public static void Main(string[] args)
     {
-        Console.WriteLine("Balls");
+        var builder = WebApplication.CreateBuilder(args);
+
+        builder.Services.AddEndpointsApiExplorer();
+        builder.Services.AddControllers();
+
+        var app = builder.Build();
+
+        app.MapControllers();
+
+        app.Run();
     }
 }
