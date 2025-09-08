@@ -25,6 +25,7 @@ public class Program
         builder.Services.AddScoped<IUserRepository, UserRepository>();
         builder.Services.AddScoped<IUserRepoTesting, UserRepoTesting>(); // remove for development
         builder.Services.AddScoped<IRegisterService, RegisterService>();
+        builder.Services.AddScoped<ILoginService, LoginService>();
 
         var app = builder.Build();
 
