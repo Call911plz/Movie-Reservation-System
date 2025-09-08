@@ -23,6 +23,7 @@ public class Program
             ")
         );
         builder.Services.AddScoped<IUserRepository, UserRepository>();
+        builder.Services.AddScoped<IMovieRepository, MovieRepository>();
         builder.Services.AddScoped<IUserRepoTesting, UserRepoTesting>(); // remove for development
         builder.Services.AddScoped<IRegisterService, RegisterService>();
         builder.Services.AddScoped<ILoginService, LoginService>();
