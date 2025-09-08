@@ -22,6 +22,7 @@ public class Program
                 TrustServerCertificate=True;
             ")
         );
+        builder.Services.AddScoped<IUserRepository, UserRepository>();
 
         var app = builder.Build();
 
