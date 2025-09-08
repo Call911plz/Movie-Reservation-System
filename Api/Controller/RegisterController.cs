@@ -10,6 +10,11 @@ public class RegisterController(IRegisterService service) : ControllerBase
     [HttpPost]
     public async Task<ActionResult<User>> RegisterUserAsync(UserDataDto userInfo)
     {
-        return Ok(await _service.RegisterUserAsync(userInfo));
+        var result = await _service.RegisterUserAsync(userInfo);
+
+        if (result == null)
+            return BadRequest();
+
+        return Ok(result);
     }
 }
