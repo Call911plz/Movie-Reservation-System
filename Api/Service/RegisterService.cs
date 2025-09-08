@@ -2,14 +2,14 @@ using Isopoh.Cryptography.Argon2;
 
 public interface IRegisterService
 {
-    public Task<User> RegisterUserAsync(UserRegisterDto userInfo);
+    public Task<User> RegisterUserAsync(UserDataDto userInfo);
 }
 
 public class RegisterService(IUserRepository repo) : IRegisterService
 {
     IUserRepository _repo = repo;
 
-    public async Task<User> RegisterUserAsync(UserRegisterDto userInfo)
+    public async Task<User> RegisterUserAsync(UserDataDto userInfo)
     {
         User newUser = new User()
         {

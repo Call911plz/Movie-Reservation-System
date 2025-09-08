@@ -8,7 +8,7 @@ public class RegisterController(IRegisterService service) : ControllerBase
     protected readonly IRegisterService _service = service;
 
     [HttpPost]
-    public async Task<ActionResult<User>> RegisterUserAsync(UserRegisterDto userInfo)
+    public async Task<ActionResult<User>> RegisterUserAsync(UserDataDto userInfo)
     {
         return Ok(await _service.RegisterUserAsync(userInfo));
     }
