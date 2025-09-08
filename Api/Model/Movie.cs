@@ -9,5 +9,5 @@ public class Movie
     public string Genre { get; set; } = string.Empty;
     public DateTime AnnouncmentTime { get; set; }
     public DateTime ShowTime { get; set; }
-    public required List<List<Seat>> Seats { get; set; }
+    public required List<SeatRow> SeatRows { get; set; }
 }
