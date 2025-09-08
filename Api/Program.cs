@@ -23,6 +23,7 @@ public class Program
             ")
         );
         builder.Services.AddScoped<IUserRepository, UserRepository>();
+        builder.Services.AddScoped<IUserRepoTesting, UserRepoTesting>();
 
         var app = builder.Build();
 
