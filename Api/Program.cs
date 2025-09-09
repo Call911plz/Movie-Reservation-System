@@ -33,6 +33,7 @@ public class Program
 
         // Main services
         builder.Services.AddScoped<IUserRepoTesting, UserRepoTesting>(); // remove for development
+        builder.Services.AddScoped<IManageMovieService, ManageMovieService>();
         builder.Services.AddScoped<IRegisterService, RegisterService>();
         builder.Services.AddScoped<ILoginService, LoginService>();
 
