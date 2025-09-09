@@ -1,6 +1,9 @@
 
 using Microsoft.EntityFrameworkCore;
 using DotNetEnv;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace Api;
 
@@ -11,6 +14,7 @@ public class Program
         Env.Load(); // Loading env variables from .env file
         var builder = WebApplication.CreateBuilder(args);
 
+        // Adding necessary services and dingys
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddControllers();
         builder.Services.AddDbContext<MovieReservationDbContext>(
@@ -27,6 +31,22 @@ public class Program
         builder.Services.AddScoped<IUserRepoTesting, UserRepoTesting>(); // remove for development
         builder.Services.AddScoped<IRegisterService, RegisterService>();
         builder.Services.AddScoped<ILoginService, LoginService>();
+
+        // JWT Extraction
+        builder.Services
+            .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            .AddJwtBearer( options => {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    ValidIssuer = builder.Configuration["Jwt:Issuer"],
+                    ValidAudience = builder.Configuration["Jwt:Audience"],
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
+                };
+            });
 
         var app = builder.Build();
 
