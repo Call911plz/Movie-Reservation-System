@@ -33,8 +33,7 @@ public class Program
         builder.Services.AddScoped<ILoginService, LoginService>();
 
         // JWT Extraction
-        builder.Services
-            .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+        builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             .AddJwtBearer( options => {
                 options.TokenValidationParameters = new TokenValidationParameters
                 {
@@ -46,7 +45,7 @@ public class Program
                     ValidAudience = builder.Configuration["Jwt:Audience"],
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
                 };
-            });
+        });
 
         var app = builder.Build();
 

@@ -19,7 +19,7 @@ public class RegisterService(IUserRepository repo) : IRegisterService
             Name = userInfo.Name,
             Username = userInfo.Username,
             Password = HashPassword(userInfo.Password),
-            IsAdmin = false
+            Role = UserRoles.User
         };
 
         return await _repo.CreateUserAsync(newUser);

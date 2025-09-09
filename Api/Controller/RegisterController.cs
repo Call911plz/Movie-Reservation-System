@@ -20,17 +20,17 @@ public class RegisterController(IRegisterService service, IConfiguration config)
         if (result == null)
             return BadRequest();
 
-        return Ok(GenerateJWT(userInfo));
+        return Ok(GenerateJWT(result));
     }
 
-    private string GenerateJWT(UserDataDto userInfo)
+    private string GenerateJWT(User userInfo)
     {
         var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
         var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
         var claims = new[] {
             new Claim(JwtRegisteredClaimNames.Sub, userInfo.Username),
-            new Claim(ClaimTypes.Role, UserRoles.User)
+            new Claim(ClaimTypes.Role, userInfo.Role)
         };
 
         var token = new JwtSecurityToken(
