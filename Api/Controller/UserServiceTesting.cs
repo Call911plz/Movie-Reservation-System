@@ -1,4 +1,5 @@
 
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 [ApiController]
@@ -14,6 +15,7 @@ public class UserServiceTesting(IUserRepoTesting service) : ControllerBase
     }
 
     [HttpGet]
+    [Authorize]
     public ActionResult<List<User>> GetUsers()
     {
         return Ok(_service.GetUsers());

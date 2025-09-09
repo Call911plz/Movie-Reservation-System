@@ -29,7 +29,8 @@ public class RegisterController(IRegisterService service, IConfiguration config)
         var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
         var claims = new[] {
-            new Claim(JwtRegisteredClaimNames.Sub, userInfo.Username)
+            new Claim(JwtRegisteredClaimNames.Sub, userInfo.Username),
+            new Claim(ClaimTypes.Role, UserRoles.User)
         };
 
         var token = new JwtSecurityToken(
