@@ -2,24 +2,24 @@ using Isopoh.Cryptography.Argon2;
 
 public interface ILoginService
 {
-    public bool LoginUserAsync(UserDataDto userInfo);
+    public User? LoginUserAsync(UserDataDto userInfo);
 }
 
 public class LoginService(IUserRepository repo) : ILoginService
 {
     IUserRepository _repo = repo;
 
-    public bool LoginUserAsync(UserDataDto userInfo)
+    public User? LoginUserAsync(UserDataDto userInfo)
     {
         User? foundUser = _repo.GetUsers().Find(user => user.Username == userInfo.Username);
 
         if (foundUser == null)
-            return false;
+            return null;
 
         if (VerifyHashPassword(foundUser.Password, userInfo.Password) == false)
-            return false;
+            return null;
 
-        return true;
+        return foundUser;
     }
 
     private bool VerifyHashPassword(string hashedPassword, string inputedPassword)

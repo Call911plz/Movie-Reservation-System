@@ -15,7 +15,7 @@ public class UserServiceTesting(IUserRepoTesting service) : ControllerBase
     }
 
     [HttpGet]
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public ActionResult<List<User>> GetUsers()
     {
         return Ok(_service.GetUsers());
