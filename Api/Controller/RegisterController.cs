@@ -29,13 +29,12 @@ public class RegisterController(IRegisterService service, IConfiguration config)
         var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
         var claims = new[] {
-            new Claim(JwtRegisteredClaimNames.Sub, userInfo.Username),
-            new Claim(JwtRegisteredClaimNames.Aud, _config["Jwt:Audience"])
+            new Claim(JwtRegisteredClaimNames.Sub, userInfo.Username)
         };
 
         var token = new JwtSecurityToken(
             _config["Jwt:Issuer"],
-            _config["Jwt:Issuer"],
+            _config["Jwt:Audience"],
             claims,
             expires: DateTime.Now.AddMinutes(120),
             signingCredentials: credentials
