@@ -26,11 +26,18 @@ public class Program
                 TrustServerCertificate=True;
             ")
         );
+
+        // Repos
         builder.Services.AddScoped<IUserRepository, UserRepository>();
         builder.Services.AddScoped<IMovieRepository, MovieRepository>();
+
+        // Main services
         builder.Services.AddScoped<IUserRepoTesting, UserRepoTesting>(); // remove for development
         builder.Services.AddScoped<IRegisterService, RegisterService>();
         builder.Services.AddScoped<ILoginService, LoginService>();
+
+        // Secondary services supplementing main
+        builder.Services.AddScoped<IJwtService, JwtService>();
 
         // JWT Extraction
         builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
