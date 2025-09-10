@@ -4,12 +4,14 @@ using DotNetEnv;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using Isopoh.Cryptography.Argon2;
+using System.Threading.Tasks;
 
 namespace Api;
 
 public class Program
 {
-    public static void Main(string[] args)
+    public static async Task Main(string[] args)
     {
         Env.Load(); // Loading env variables from .env file
         var builder = WebApplication.CreateBuilder(args);
@@ -60,6 +62,14 @@ public class Program
         app.MapControllers();
         app.UseAuthentication();
         app.UseAuthorization();
+
+        // Seeding data
+        using (var scope = app.Services.CreateScope())
+        {
+            var context = scope.ServiceProvider.GetRequiredService<MovieReservationDbContext>();
+            DataSeeder seeder = new(context);
+            await seeder.SeedAdminAsync();
+        }
 
         app.Run();
     }
