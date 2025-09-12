@@ -55,7 +55,7 @@ public class MovieRepository(MovieReservationDbContext context) : IMovieReposito
         movieEntity.Genre = movieToUpdate.Genre;
         movieEntity.AnnouncmentTime = movieToUpdate.AnnouncmentTime;
         movieEntity.ShowTime = movieToUpdate.ShowTime;
-        movieEntity.SeatRows = movieToUpdate.SeatRows;
+        movieEntity.Seats = movieToUpdate.Seats;
 
         await _context.SaveChangesAsync();
 

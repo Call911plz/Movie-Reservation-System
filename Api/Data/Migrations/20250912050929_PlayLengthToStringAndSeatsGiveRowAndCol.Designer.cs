@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Api.Data.Migrations
 {
     [DbContext(typeof(MovieReservationDbContext))]
-    partial class MovieReservationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250912050929_PlayLengthToStringAndSeatsGiveRowAndCol")]
+    partial class PlayLengthToStringAndSeatsGiveRowAndCol
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -60,7 +63,7 @@ namespace Api.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Movies", (string)null);
+                    b.ToTable("Movies");
                 });
 
             modelBuilder.Entity("User", b =>
@@ -92,7 +95,7 @@ namespace Api.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users", (string)null);
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("Movie", b =>
@@ -122,7 +125,7 @@ namespace Api.Data.Migrations
 
                             b1.HasIndex("ReservedUserId");
 
-                            b1.ToTable("Seat", (string)null);
+                            b1.ToTable("Seat");
 
                             b1.WithOwner()
                                 .HasForeignKey("MovieId");
