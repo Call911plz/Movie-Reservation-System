@@ -21,7 +21,7 @@ Standard Model, View, Controller, Service.
 ---
 - [X] Admins should be able to add, update, and delete movies.
 - [ ] Each movie should have a title, description, and poster image.
-- [ ] Movies should be categorized by genre.
+- [X] Movies should be categorized by genre.
 - [ ] Movies should have showtimes.
 
 ## Reservation Management

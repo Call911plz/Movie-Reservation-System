@@ -38,6 +38,7 @@ public class Program
         builder.Services.AddScoped<IManageMovieService, ManageMovieService>();
         builder.Services.AddScoped<IRegisterService, RegisterService>();
         builder.Services.AddScoped<ILoginService, LoginService>();
+        builder.Services.AddScoped<IMovieLookUpService, MovieLookUpService>();
 
         // Secondary services supplementing main
         builder.Services.AddScoped<IJwtService, JwtService>();
