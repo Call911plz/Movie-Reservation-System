@@ -2,14 +2,14 @@ using Isopoh.Cryptography.Argon2;
 
 public interface IRegisterService
 {
-    public Task<User?> RegisterUserAsync(UserDataDto userInfo);
+    public Task<User?> RegisterUserAsync(UserLoginDataDto userInfo);
 }
 
 public class RegisterService(IUserRepository repo) : IRegisterService
 {
     IUserRepository _repo = repo;
 
-    public async Task<User?> RegisterUserAsync(UserDataDto userInfo)
+    public async Task<User?> RegisterUserAsync(UserLoginDataDto userInfo)
     {
         if (_repo.GetUsers().Exists(user => user.Username == userInfo.Username))
             return null;

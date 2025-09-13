@@ -10,7 +10,7 @@ public class LoginController(ILoginService service, IConfiguration config, IJwtS
     protected readonly IJwtService _jwtService = jwtService;
 
     [HttpPost]
-    public ActionResult<string> LoginUserAsync(UserDataDto userInfo)
+    public ActionResult<string> LoginUserAsync(UserLoginDataDto userInfo)
     {
         var result = _service.LoginUserAsync(userInfo);
 

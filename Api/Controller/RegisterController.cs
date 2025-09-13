@@ -14,7 +14,7 @@ public class RegisterController(IRegisterService service, IConfiguration config,
     protected readonly IJwtService _jwtService = jwtService;
 
     [HttpPost]
-    public async Task<ActionResult<string>> RegisterUserAsync(UserDataDto userInfo)
+    public async Task<ActionResult<string>> RegisterUserAsync(UserLoginDataDto userInfo)
     {
         var result = await _service.RegisterUserAsync(userInfo);
 

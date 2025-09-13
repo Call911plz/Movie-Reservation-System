@@ -2,14 +2,14 @@ using Isopoh.Cryptography.Argon2;
 
 public interface ILoginService
 {
-    public User? LoginUserAsync(UserDataDto userInfo);
+    public User? LoginUserAsync(UserLoginDataDto userInfo);
 }
 
 public class LoginService(IUserRepository repo) : ILoginService
 {
     IUserRepository _repo = repo;
 
-    public User? LoginUserAsync(UserDataDto userInfo)
+    public User? LoginUserAsync(UserLoginDataDto userInfo)
     {
         User? foundUser = _repo.GetUsers().Find(user => user.Username == userInfo.Username);
 
