@@ -49,7 +49,7 @@ public class UserRepository(MovieReservationDbContext context) : IUserRepository
 
         userEntity.Name = userToUpdate.Name;
         userEntity.Role = userToUpdate.Role;
-        userEntity.ReservedSeat = userToUpdate.ReservedSeat;
+        userEntity.ReservedSeats = userToUpdate.ReservedSeats;
 
         await _context.SaveChangesAsync();
 

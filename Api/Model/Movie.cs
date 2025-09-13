@@ -9,5 +9,7 @@ public class Movie
     public string Genre { get; set; } = string.Empty;
     public DateTime AnnouncmentTime { get; set; }
     public DateTime ShowTime { get; set; }
-    public required List<Seat> Seats { get; set; }
+
+    // One to Many relation to seats
+    public ICollection<Seat> Seats { get; set; } = [];
 }

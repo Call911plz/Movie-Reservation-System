@@ -37,7 +37,10 @@ public class MovieRepository(MovieReservationDbContext context) : IMovieReposito
 
     public List<Movie> GetMovies()
     {
-        return _context.Movies.ToList();
+        var result = _context.Movies
+            .Include(m => m.Seats)
+            .ToList();
+        return result;
     }
 
     public async Task<Movie?> UpdateMovieAsync(Movie movieToUpdate)
