@@ -17,7 +17,7 @@ public class AdminMovieManageController(IManageMovieService service) : Controlle
 
     [HttpGet]
     [Authorize(Roles = "Admin")]
-    public ActionResult<List<Movie>> GetMovies()
+    public ActionResult<List<MovieOverviewDto>> GetMovies()
     {
         return Ok(_service.GetMovies());
     }
