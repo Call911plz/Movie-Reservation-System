@@ -1,6 +1,6 @@
 public interface IManageMovieService
 {
-    public Task<Movie?> CreateMovieAsync(Movie newMovie);
+    public Task<MovieOverviewDto?> CreateMovieAsync(MovieOverviewDto newMovie);
     public List<MovieOverviewDto> GetMovies();
     public Task<Movie?> UpdateMovieAsync(Movie movieToUpdate);
     public Task<bool?> DeleteMovieAsync(Movie movieToDelete);
@@ -10,9 +10,27 @@ public class ManageMovieService(IMovieRepository repo) : IManageMovieService
 {
     IMovieRepository _repo = repo;
 
-    public async Task<Movie?> CreateMovieAsync(Movie newMovie)
+    public async Task<MovieOverviewDto?> CreateMovieAsync(MovieOverviewDto newMovie)
     {
-        return await _repo.CreateMovieAsync(newMovie);
+        Movie returnedMovie = await _repo.CreateMovieAsync(new Movie
+        {
+            Name = newMovie.Name,
+            Description = newMovie.Description,
+            ImagePath = newMovie.ImagePath,
+            Cost = newMovie.Cost,
+            PlayLength = newMovie.PlayLength,
+            Genre = newMovie.Genre,
+            AnnouncmentTime = newMovie.AnnouncmentTime,
+            ShowTime = newMovie.ShowTime,
+            Seats = newMovie.Seats
+                .Select(seat => new Seat
+                {
+                    Row = seat.Row,
+                    Column = seat.Column
+                })
+                .ToList()
+        });
+        return new MovieOverviewDto(returnedMovie);
     }
 
     public async Task<bool?> DeleteMovieAsync(Movie movieToDelete)

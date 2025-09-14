@@ -10,7 +10,7 @@ public class AdminMovieManageController(IManageMovieService service) : Controlle
 
     [HttpPost]
     [Authorize(Roles = "Admin")]
-    public async Task<ActionResult<Movie>> CreateMovieAsync(Movie newMovie)
+    public async Task<ActionResult<MovieOverviewDto>> CreateMovieAsync(MovieOverviewDto newMovie)
     {
         return Ok(await _service.CreateMovieAsync(newMovie));
     }

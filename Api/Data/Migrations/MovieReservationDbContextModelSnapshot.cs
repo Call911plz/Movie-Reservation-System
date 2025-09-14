@@ -60,7 +60,7 @@ namespace Api.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Movies");
+                    b.ToTable("Movies", (string)null);
                 });
 
             modelBuilder.Entity("Seat", b =>
@@ -90,7 +90,7 @@ namespace Api.Data.Migrations
 
                     b.HasIndex("ReservedUserId");
 
-                    b.ToTable("Seats");
+                    b.ToTable("Seats", (string)null);
                 });
 
             modelBuilder.Entity("User", b =>
@@ -119,7 +119,7 @@ namespace Api.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", (string)null);
                 });
 
             modelBuilder.Entity("Seat", b =>
