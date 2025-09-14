@@ -22,11 +22,11 @@ public class AdminMovieManageController(IManageMovieService service) : Controlle
         return Ok(_service.GetMovies());
     }
 
-    [HttpPut]
+    [HttpPut("{id}")]
     [Authorize(Roles = "Admin")]
-    public async Task<ActionResult<Movie>> UpdateMovieAsync(Movie movieToUpdate)
+    public async Task<ActionResult<MovieOverviewDto>> UpdateMovieAsync(int id, MovieOverviewDto movieToUpdate)
     {
-        return Ok(await _service.UpdateMovieAsync(movieToUpdate));
+        return Ok(await _service.UpdateMovieAsync(id, movieToUpdate));
     }
 
     [HttpDelete]

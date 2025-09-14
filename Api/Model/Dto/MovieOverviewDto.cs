@@ -2,6 +2,7 @@ using System.Text.Json.Serialization;
 
 public class MovieOverviewDto
 {
+    public int Id { get; }
     public string Name { get; set; } = string.Empty;
     public string Description { get; set; } = string.Empty;
     public string ImagePath { get; set; } = string.Empty;
@@ -38,6 +39,6 @@ public class MovieOverviewDto
         movie.Seats.Select(seat => new SeatOverviewDto(seat)).ToList()
     )
     {
-        
+        Id = movie.Id; // assigning visible id only when retrieving from existing movie
     }
 }

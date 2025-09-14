@@ -30,3 +30,8 @@ Standard Model, View, Controller, Service.
 - [ ] Users should be able to reserve seats for a showtime, see the available seats, and select the seats they want.
 - [ ] Users should be able to see their reservations and cancel them (only upcoming ones).
 - [ ] Admins should be able to see all reservations, capacity, and revenue.
+
+# ToDo
+---
+- [ ] Fix UserMovieRequestController to use dto
+- [ ] Update other admin movie manage functions to use dto

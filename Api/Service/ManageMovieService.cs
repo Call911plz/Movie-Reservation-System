@@ -2,7 +2,7 @@ public interface IManageMovieService
 {
     public Task<MovieOverviewDto?> CreateMovieAsync(MovieOverviewDto newMovie);
     public List<MovieOverviewDto> GetMovies();
-    public Task<Movie?> UpdateMovieAsync(Movie movieToUpdate);
+    public Task<MovieOverviewDto?> UpdateMovieAsync(int id, MovieOverviewDto movieToUpdate);
     public Task<bool?> DeleteMovieAsync(Movie movieToDelete);
 }
 
@@ -45,8 +45,28 @@ public class ManageMovieService(IMovieRepository repo) : IManageMovieService
             .ToList();
     }
 
-    public Task<Movie?> UpdateMovieAsync(Movie movieToUpdate)
+    public async Task<MovieOverviewDto?> UpdateMovieAsync(int id, MovieOverviewDto movieToUpdate)
     {
-        return _repo.UpdateMovieAsync(movieToUpdate);
+        Movie? returnedMovie = await _repo.UpdateMovieAsync(new Movie
+        {
+            Id = id,
+            Name = movieToUpdate.Name,
+            Description = movieToUpdate.Description,
+            ImagePath = movieToUpdate.ImagePath,
+            Cost = movieToUpdate.Cost,
+            PlayLength = movieToUpdate.PlayLength,
+            Genre = movieToUpdate.Genre,
+            AnnouncmentTime = movieToUpdate.AnnouncmentTime,
+            ShowTime = movieToUpdate.ShowTime,
+            Seats = movieToUpdate.Seats
+                .Select(seat => new Seat
+                {
+                    Row = seat.Row,
+                    Column = seat.Column
+                })
+                .ToList()
+        });
+
+        return new MovieOverviewDto(returnedMovie);
     }
 }
