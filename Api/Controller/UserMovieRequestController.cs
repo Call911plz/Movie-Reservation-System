@@ -10,7 +10,7 @@ public class UserMovieRequestController(IMovieLookUpService service) : Controlle
 
     [HttpGet("genre")]
     [Authorize(Roles = "Admin, User")]
-    public ActionResult<List<Movie>> GetByGenre()
+    public ActionResult<List<MovieOverviewDto>> GetByGenre()
     {
         return Ok(_service.GetByGenre());
     }

@@ -33,5 +33,5 @@ Standard Model, View, Controller, Service.
 
 # ToDo
 ---
-- [ ] Fix UserMovieRequestController to use dto
-- [ ] Update other admin movie manage functions to use dto
+- [X] Fix UserMovieRequestController to use dto
+- [X] Update other admin movie manage functions to use dto
