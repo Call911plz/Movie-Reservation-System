@@ -29,10 +29,10 @@ public class AdminMovieManageController(IManageMovieService service) : Controlle
         return Ok(await _service.UpdateMovieAsync(id, movieToUpdate));
     }
 
-    [HttpDelete]
+    [HttpDelete("{id}")]
     [Authorize(Roles = "Admin")]
-    public async Task<ActionResult<bool>> DeleteMovieAsync(Movie movieToDelete)
+    public async Task<ActionResult<MovieOverviewDto>> DeleteMovieAsync(int id)
     {
-        return Ok(await _service.DeleteMovieAsync(movieToDelete));
+        return Ok(await _service.DeleteMovieAsync(id));
     }
 }

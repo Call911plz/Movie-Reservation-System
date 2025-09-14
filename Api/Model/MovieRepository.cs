@@ -5,7 +5,7 @@ public interface IMovieRepository
     public Task<Movie> CreateMovieAsync(Movie newMovie);
     public List<Movie> GetMovies();
     public Task<Movie?> UpdateMovieAsync(Movie movieToUpdate);
-    public Task<bool?> DeleteMovieAsync(Movie movieToDelete);
+    public Task<Movie?> DeleteMovieAsync(int id);
 }
 
 public class MovieRepository(MovieReservationDbContext context) : IMovieRepository
@@ -21,9 +21,9 @@ public class MovieRepository(MovieReservationDbContext context) : IMovieReposito
         return result.Entity;
     }
 
-    public async Task<bool?> DeleteMovieAsync(Movie movieToDelete)
+    public async Task<Movie?> DeleteMovieAsync(int id)
     {
-        var movieEntity = await _context.Movies.SingleOrDefaultAsync(movie => movie.Id == movieToDelete.Id);
+        var movieEntity = await _context.Movies.SingleOrDefaultAsync(movie => movie.Id == id);
 
         if (movieEntity == null)
             return null;
@@ -32,7 +32,7 @@ public class MovieRepository(MovieReservationDbContext context) : IMovieReposito
 
         await _context.SaveChangesAsync();
         
-        return true;
+        return movieEntity;
     }
 
     public List<Movie> GetMovies()
